@@ -1,8 +1,15 @@
 #!/usr/bin/env bash
 
 
+# Reliable way for a bash script to get the full path to itself?
+# http://stackoverflow.com/questions/4774054/reliable-way-for-a-bash-script-to-get-the-full-path-to-itself
+pushd `dirname $0` > /dev/null
+SCRIPT_FOLDER_PATH=`pwd`
+popd > /dev/null
+
 # Whether we are dealing with a git-submodule or not, this get the correct git file path for the
 # project root folder if run on it directory, or for the sub-module folder if run on its directory.
+cd ..
 GIT_DIR_="$(git rev-parse --git-dir)"
 gitHooksPath="$GIT_DIR_/hooks"
 
@@ -11,12 +18,6 @@ gitHooksPath="$GIT_DIR_/hooks"
 if [ -d $gitHooksPath ]
 then
     printf "Installing the githooks...\n\n"
-
-    # Reliable way for a bash script to get the full path to itself?
-    # http://stackoverflow.com/questions/4774054/reliable-way-for-a-bash-script-to-get-the-full-path-to-itself
-    pushd `dirname $0` > /dev/null
-    SCRIPT_FOLDER_PATH=`pwd`
-    popd > /dev/null
 
     # Remove the '/app/blabla/' from the $SCRIPT_FOLDER_PATH variable.
     # https://regex101.com/r/rR0oM2/1

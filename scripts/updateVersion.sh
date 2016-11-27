@@ -60,7 +60,7 @@ PROJECT_ROOT_DIRECTORY=$(git rev-parse --show-toplevel)
 gitHooksConfigPath=$(cat $SCRIP_FOLDER_PATH/../githooksConfig.txt)
 
 # $versionFilePath example: $SCRIP_FOLDER_PATH/GALILEO_SMA_VERSION.txt
-versionFilePath=$SCRIP_FOLDER_PATH/../$(echo $gitHooksConfigPath | cut -d',' -f 1)
+versionFilePath=$PROJECT_ROOT_DIRECTORY/$(echo $gitHooksConfigPath | cut -d',' -f 1)
 
 # $filePathToUpdate example: $PROJECT_ROOT_DIRECTORY/scripting/galileo.sma
 filePathToUpdate=$PROJECT_ROOT_DIRECTORY/$(echo $gitHooksConfigPath | cut -d',' -f 2)
