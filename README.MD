@@ -1,14 +1,36 @@
-# Git Hooks
 
-This folder contains the git hooks used the by this project. 
-To install them, just copy the files "post-checkout", "post-commit"
-and "prepare-commit-msg" to "$THIS_REPOSITORY_DIR/.git/hooks/", 
-or run the installer `install_githooks.sh`.
+# Automated Versioning Script
+
+Automatically updates the version number for your project files.
+
+Open the file "githooksConfig.txt" to configure the files to be used and updated when the program
+"./updateVersion.sh" to run. To install it as an automated git versioning on every commit, run
+the installer `install_githooks.sh`.
 
 
-Open the file "githooksConfig.txt" to configure the files to be
-used and updated when the program "./updateVersion.sh" to run.
 
+### Installing
+
+To run the versioning script, you need to:
+
+1. You could fork this repository before install it into your project and add as a submodule.
+1. You could just do download this repository files and commit them with your project files.
+1. You could clone this repository on yours git repository main's root folder.
+Add this repository folder to your's main repository `.gitignore` file as:
+```
+/versioning/*
+```
+Replace the `versioning` name by your's clones name for this repository.
+
+
+
+### Running it
+
+For automated versioning when doing git commits/committing:
+
+1. Run the `git hooks` installer script `install_githooks.sh`. And re-run the installer
+`install_githooks.sh` every time you rename the folder where this repository is cloned into.
+1. Run the script `updateVersion.sh` and read the instructions.
 
 Program usage: 
 ```
@@ -20,22 +42,9 @@ Example:
 1. `./updateVersion build` to increment the build number.
 
 
-### Installing
 
-To install this automated versioning script, you need to:
-
-1. Fork this repository on yours git repository main's root folder.
-1. Run the script `updateVersion.sh` and read the instructions.
-
-For automated versioning when committing:
-
-1. Run the `git hooks` installer script `install_githooks.sh`.
-1. Re-run the installer `install_githooks.sh` every time you rename the folder where repository
-is forked into.
-
-
-
-#### Semantic Versioning 2.0.0
+___
+## Semantic Versioning 2.0.0
 
 Given a version number MAJOR.MINOR.PATCH, increment the:
 
