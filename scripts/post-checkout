@@ -19,7 +19,7 @@
 
 
 # This script is run straight from the project's git root folder, as the current working directory.
-printf "Running the post-checkout hook...\n"
+# printf "Running the post-checkout hook...\n"
 
 
 # Get the project's `.git` folder. It will return the absolute path to the `.git` folder, unless
@@ -58,8 +58,8 @@ fi
 # Run the version update script.
 if sh $updateVersionScript
 then
-    printf "The post-checkout hook successfully ran '$updateVersionScript'.\n"
     :
+    # printf "The post-checkout hook successfully ran '$updateVersionScript'.\n"
 else
     printf "Could not run the update program '$updateVersionScript' properly!\n"
     exit 1

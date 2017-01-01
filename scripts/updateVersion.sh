@@ -18,7 +18,7 @@
 
 
 # This script is run straight from the project's git root folder, as the current working directory.
-printf "Running the updateVersion.sh script...\n"
+# printf "Running the updateVersion.sh script...\n"
 
 
 # Reliable way for a bash script to get the full path to itself?
@@ -154,17 +154,17 @@ fi
 # Fix line endings
 if awk '/\r$/{exit 0;} 1{exit 1;}' $filePathToUpdate
 then
-    printf "( CRLF ) The file $filePathToUpdate is uses CRLF.\n"
+    # printf "( CRLF ) The file $filePathToUpdate is uses CRLF.\n"
     dos2unix $filePathToUpdate
 else
-    printf "( LF ) The file $filePathToUpdate is uses LF.\n"
+    # printf "( LF ) The file $filePathToUpdate is uses LF.\n"
     unix2dos $filePathToUpdate
 fi
 
 
 # To add the recent updated files to the commit
-printf "Staging '$versionFilePath'...\n"
-printf "Staging '$filePathToUpdate'...\n"
+# printf "Staging '$versionFilePath'...\n"
+# printf "Staging '$filePathToUpdate'...\n"
 git add $versionFilePath
 git add $filePathToUpdate
 

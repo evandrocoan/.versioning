@@ -7,7 +7,7 @@
 
 
 # This script is run straight from the project's git root folder, as the current working directory.
-printf "Running the __post-git-hook.sh script...\n"
+# printf "Running the __post-git-hook.sh script...\n"
 
 
 # Reliable way for a bash script to get the full path to itself?
@@ -51,7 +51,7 @@ cleanUpdateFlagFile()
 {
     if [ -f $updateFlagFilePath ]
     then
-        printf "Removing old post-commit or checkout configuration file '$updateFlagFilePath'...\n"
+        # printf "Removing old post-commit or checkout configuration file '$updateFlagFilePath'...\n"
         rm $updateFlagFilePath
     fi
 }
@@ -65,23 +65,24 @@ then
     then
         if sh $updateVersionProgram build
         then
-            printf "Successfully ran '$updateVersionProgram'.\n"
+            :
+            # printf "Successfully ran '$updateVersionProgram'.\n"
         else
-            printf "Could not run the update program '$updateVersionProgram' properly!\n"
+            # printf "Could not run the update program '$updateVersionProgram' properly!\n"
             cleanUpdateFlagFile
             exit 1
         fi
 
         # '-C HEAD' do not prompt for a commit message, use the HEAD as commit message.
         # '--no-verify' do not call the pre-commit hook to avoid infinity loop.
-        printf "Amending commits...\n"
+        # printf "Amending commits...\n"
         git commit --amend -C HEAD --no-verify
     else
         printf "It is not time to amend, as we are not on the '$targetBranch' branch.\n"
     fi
 else
-    printf "It is not time to amend, as the file '$updateFlagFilePath' does not exist.\n"
     :
+    # printf "It is not time to amend, as the file '$updateFlagFilePath' does not exist.\n"
 fi
 
 
