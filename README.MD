@@ -66,4 +66,24 @@ http://semver.org/
 
 
 
+## Change log
+```
+v2.1.0
+Allowed free folder renaming for the auto-versioning root folder.
+v2.0.0
+Added installer script `install_githooks.sh`.
+Removed reduntant configurations from `githooksConfig.txt`.
+Added a new setting to choose which branch is the target branch for auto versioning.
+v1.1.2
+Added error message when the 'sed' operation fails.
+v1.1.1
+Placed this file within the repository sub-folder "./$AUTO_VERSIONING_ROOT_FOLDER_NAME".
+v1.1
+ Implemented build incrementing number.
+ Created variables to hold the used files names.
+ Added file search and replace to update the version numbers.
+v1.0
+ Downloaded from: https://github.com/cloudfoundry/cli/blob/master/bin/bump-version
+```
+
 
