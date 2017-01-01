@@ -37,7 +37,7 @@ AUTO_VERSIONING_ROOT_FOLDER_NAME=$(cat $GIT_DIR_/hooks/gitHooksRoot.txt)
 updateVersionScript=$PROJECT_ROOT_DIRECTORY/$AUTO_VERSIONING_ROOT_FOLDER_NAME/__post-git-hook.sh
 
 # $targetBranch example: develop, use . to operate all branches
-targetBranch=$(echo $githooksConfig | cut -d',' -f 3)
+targetBranch=$(echo $githooksConfig | cut -d',' -f 3 | tr -d ' ')
 
 
 if [[ $targetBranch != "." ]]

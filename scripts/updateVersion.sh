@@ -32,18 +32,35 @@ PROJECT_ROOT_DIRECTORY=$(git rev-parse --show-toplevel)
 
 
 # Read the configurations file.
-gitHooksConfigPath=$(cat $SCRIP_FOLDER_PATH/../githooksConfig.txt)
+configurationFileName=githooksConfig.txt
+configurationFilePath=$SCRIP_FOLDER_PATH/../../$configurationFileName
+
+if [ -f $configurationFilePath ]
+then
+    gitHooksConfiguration=$(cat $configurationFilePath)
+else
+    printf "Creating the configuration file '$configurationFilePath'...\n"
+    cp $SCRIP_FOLDER_PATH/../$configurationFileName $SCRIP_FOLDER_PATH/../../
+    exit 1
+fi
 
 # $versionFilePath example: $SCRIP_FOLDER_PATH/GALILEO_SMA_VERSION.txt
-versionFilePath=$PROJECT_ROOT_DIRECTORY/$(echo $gitHooksConfigPath | cut -d',' -f 1)
+versionFilePath=$PROJECT_ROOT_DIRECTORY/$(echo $gitHooksConfiguration | cut -d',' -f 1 | tr -d ' ')
 
 # $filePathToUpdate example: $PROJECT_ROOT_DIRECTORY/scripting/galileo.sma
-filePathToUpdate=$PROJECT_ROOT_DIRECTORY/$(echo $gitHooksConfigPath | cut -d',' -f 2)
+filePathToUpdate=$PROJECT_ROOT_DIRECTORY/$(echo $gitHooksConfiguration | cut -d',' -f 2 | tr -d ' ')
 
 # Get the current version from the dedicated versioning file.
-currentVersion=$(cat $versionFilePath)
-originalVersion=$currentVersion
+if [ -f $versionFilePath ]
+then
+    currentVersion=$(cat $versionFilePath)
+else
+    printf "Creating the configuration file '$versionFilePath'...\n"
+    printf "1.0.0-1" > $versionFilePath
+    exit 1
+fi
 
+originalVersion=$currentVersion
 component=$1
 
 

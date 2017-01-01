@@ -38,13 +38,16 @@ AUTO_VERSIONING_ROOT_FOLDER_NAME=$(cat $GIT_DIR_/hooks/gitHooksRoot.txt)
 gitHooksConfigPath=$(cat $PROJECT_ROOT_DIRECTORY/$AUTO_VERSIONING_ROOT_FOLDER_NAME/../githooksConfig.txt)
 
 # $versionFilePath example: $PROJECT_ROOT_DIRECTORY/$AUTO_VERSIONING_ROOT_FOLDER_NAME/GALILEO_SMA_VERSION.txt
-versionFilePath=$PROJECT_ROOT_DIRECTORY/$(echo $gitHooksConfigPath | cut -d',' -f 1)
+versionFilePath=$PROJECT_ROOT_DIRECTORY/$(echo $gitHooksConfigPath | cut -d',' -f 1 | tr -d ' ')
 
 # $filePathToUpdate example: $PROJECT_ROOT_DIRECTORY/scripting/galileo.sma
-filePathToUpdate=$PROJECT_ROOT_DIRECTORY/$(echo $gitHooksConfigPath | cut -d',' -f 2)
+filePathToUpdate=$PROJECT_ROOT_DIRECTORY/$(echo $gitHooksConfigPath | cut -d',' -f 2 | tr -d ' ')
 
 # $targetBranch example: develop, use . to operate all branches
-targetBranch=$(echo $gitHooksConfigPath | cut -d',' -f 3)
+targetBranch=$(echo $gitHooksConfigPath | cut -d',' -f 3 | tr -d ' ')
+
+# $targetFile example: galileo.sma, use . to operate all files
+targetFile=$(echo $gitHooksConfigPath | cut -d',' -f 4 | tr -d ' ')
 
 
 # $fileNameToUpdate example: galileo.sma
@@ -76,7 +79,7 @@ fi
 
 
 # If the $fileNameToUpdate is not being committed right now, do nothing.
-if true # [[ $currentGitFiles == *"$fileNameToUpdate"* ]]
+if [[ $currentGitFiles == *"$targetFile"* || $targetFile == "." ]]
 then
     # To prints a error message when it does not find the version number on the file.
     #

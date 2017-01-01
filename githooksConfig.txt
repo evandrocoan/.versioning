@@ -1,4 +1,8 @@
-SUBLIME_STUDIO_VERSION.txt,README.MD,develop,
+SUBLIME_STUDIO_VERSION.txt,
+README.MD,
+develop,
+.,
+
 
 This is the 'updateVersion.sh' configuration file.
 It is important do not include any spaces on the above configuration line or remove the last comma.

@@ -31,7 +31,7 @@ gitHooksConfigPath=$(cat $SCRIPT_FOLDER_PATH/../githooksConfig.txt)
 filePathToUpdate=$PROJECT_ROOT_DIRECTORY/$(echo $gitHooksConfigPath | cut -d',' -f 2)
 
 # $targetBranch example: develop, use . to operate all branches
-targetBranch=$(echo $gitHooksConfigPath | cut -d',' -f 3)
+targetBranch=$(echo $gitHooksConfigPath | cut -d',' -f 3 | tr -d ' ')
 
 # Remove the '/app/blabla/' from the $filePathToUpdate argument name. Example: galileo.sma
 # https://regex101.com/r/rR0oM2/1
