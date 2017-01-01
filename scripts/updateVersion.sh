@@ -28,27 +28,27 @@ SCRIP_FOLDER_PATH=`pwd`
 popd > /dev/null
 
 # Get the submodule (if any) or the main's repository root directory
-PROJECT_ROOT_DIRECTORY=$(git rev-parse --show-toplevel)
+PROJECT_ROOT_DIRECTORY="$(git rev-parse --show-toplevel)"
 
 
 # Read the configurations file.
-configurationFileName=githooksConfig.txt
-configurationFilePath=$SCRIP_FOLDER_PATH/../../$configurationFileName
+configurationFileName="gitHooksConfig.txt"
+configurationFilePath="$SCRIP_FOLDER_PATH/../../$configurationFileName"
 
 if [ -f $configurationFilePath ]
 then
     gitHooksConfiguration=$(cat $configurationFilePath)
 else
     printf "Creating the configuration file '$configurationFilePath'...\n"
-    cp $SCRIP_FOLDER_PATH/$configurationFileName $SCRIP_FOLDER_PATH/../../
+    cp "$SCRIP_FOLDER_PATH/$configurationFileName" "$SCRIP_FOLDER_PATH/../../"
     exit 1
 fi
 
 # $versionFilePath example: $SCRIP_FOLDER_PATH/GALILEO_SMA_VERSION.txt
-versionFilePath=$PROJECT_ROOT_DIRECTORY/$(echo $gitHooksConfiguration | cut -d',' -f 1 | tr -d ' ')
+versionFilePath="$PROJECT_ROOT_DIRECTORY/$(echo $gitHooksConfiguration | cut -d',' -f 1 | tr -d ' ')"
 
 # $filePathToUpdate example: $PROJECT_ROOT_DIRECTORY/scripting/galileo.sma
-filePathToUpdate=$PROJECT_ROOT_DIRECTORY/$(echo $gitHooksConfiguration | cut -d',' -f 2 | tr -d ' ')
+filePathToUpdate="$PROJECT_ROOT_DIRECTORY/$(echo $gitHooksConfiguration | cut -d',' -f 2 | tr -d ' ')"
 
 # Get the current version from the dedicated versioning file.
 if [ -f $versionFilePath ]

@@ -3,7 +3,7 @@
 
 Automatically updates the version number for your project files.
 
-Open the file "githooksConfig.txt" to configure the files to be used and updated when the program
+Open the file "gitHooksConfig.txt" to configure the files to be used and updated when the program
 "./updateVersion.sh" to run. To install it as an automated git versioning on every commit, run
 the installer `install_githooks.sh`.
 
@@ -72,7 +72,7 @@ v2.1.0
 Allowed free folder renaming for the auto-versioning root folder.
 v2.0.0
 Added installer script `install_githooks.sh`.
-Removed reduntant configurations from `githooksConfig.txt`.
+Removed redundant configurations from `gitHooksConfig.txt`.
 Added a new setting to choose which branch is the target branch for auto versioning.
 v1.1.2
 Added error message when the 'sed' operation fails.

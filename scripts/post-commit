@@ -20,12 +20,12 @@ GIT_DIR_="$(git rev-parse --git-dir)"
 # Get the submodule (if any) or the main's repository root directory.
 PROJECT_ROOT_DIRECTORY=$(git rev-parse --show-toplevel)
 
-# Get the `AUTO_VERSIONING_ROOT_FOLDER_NAME`
-AUTO_VERSIONING_ROOT_FOLDER_NAME=$(cat $GIT_DIR_/hooks/gitHooksRoot.txt)
+# Get the `VERSIONING_SCRIPTS_FOLDER_PATH`
+VERSIONING_SCRIPTS_FOLDER_PATH=$(cat $GIT_DIR_/hooks/gitHooksRoot.txt)
 
 
 # Read the configurations file.
-updateVersionScript=$PROJECT_ROOT_DIRECTORY/$AUTO_VERSIONING_ROOT_FOLDER_NAME/__post-git-hook.sh
+updateVersionScript=$PROJECT_ROOT_DIRECTORY/$VERSIONING_SCRIPTS_FOLDER_PATH/__post-git-hook.sh
 
 
 # Run the version update script.

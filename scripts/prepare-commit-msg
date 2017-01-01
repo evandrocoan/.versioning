@@ -34,20 +34,20 @@ PROJECT_ROOT_DIRECTORY=$(git rev-parse --show-toplevel)
 # Get the `AUTO_VERSIONING_ROOT_FOLDER_NAME`
 AUTO_VERSIONING_ROOT_FOLDER_NAME=$(cat $GIT_DIR_/hooks/gitHooksRoot.txt)
 
-# Read the configurations file. Example $PROJECT_ROOT_DIRECTORY/$AUTO_VERSIONING_ROOT_FOLDER_NAME/githooksConfig.txt.
-gitHooksConfigPath=$(cat $PROJECT_ROOT_DIRECTORY/$AUTO_VERSIONING_ROOT_FOLDER_NAME/../githooksConfig.txt)
+# Read the configurations file. Example $PROJECT_ROOT_DIRECTORY/$AUTO_VERSIONING_ROOT_FOLDER_NAME/../gitHooksConfig.txt.
+gitHooksConfigFile=$(cat $PROJECT_ROOT_DIRECTORY/$AUTO_VERSIONING_ROOT_FOLDER_NAME/../../gitHooksConfig.txt)
 
-# $versionFilePath example: $PROJECT_ROOT_DIRECTORY/$AUTO_VERSIONING_ROOT_FOLDER_NAME/GALILEO_SMA_VERSION.txt
-versionFilePath=$PROJECT_ROOT_DIRECTORY/$(echo $gitHooksConfigPath | cut -d',' -f 1 | tr -d ' ')
+# $versionFilePath example: $PROJECT_ROOT_DIRECTORY/versioning/GALILEO_SMA_VERSION.txt
+versionFilePath=$PROJECT_ROOT_DIRECTORY/$(echo $gitHooksConfigFile | cut -d',' -f 1 | tr -d ' ')
 
 # $filePathToUpdate example: $PROJECT_ROOT_DIRECTORY/scripting/galileo.sma
-filePathToUpdate=$PROJECT_ROOT_DIRECTORY/$(echo $gitHooksConfigPath | cut -d',' -f 2 | tr -d ' ')
+filePathToUpdate=$PROJECT_ROOT_DIRECTORY/$(echo $gitHooksConfigFile | cut -d',' -f 2 | tr -d ' ')
 
 # $targetBranch example: develop, use . to operate all branches
-targetBranch=$(echo $gitHooksConfigPath | cut -d',' -f 3 | tr -d ' ')
+targetBranch=$(echo $gitHooksConfigFile | cut -d',' -f 3 | tr -d ' ')
 
 # $targetFile example: galileo.sma, use . to operate all files
-targetFile=$(echo $gitHooksConfigPath | cut -d',' -f 4 | tr -d ' ')
+targetFile=$(echo $gitHooksConfigFile | cut -d',' -f 4 | tr -d ' ')
 
 
 # $fileNameToUpdate example: galileo.sma
@@ -55,8 +55,7 @@ targetFile=$(echo $gitHooksConfigPath | cut -d',' -f 4 | tr -d ' ')
 fileNameToUpdate=$(echo $filePathToUpdate | sed -r "s/((.+\/)+)//")
 
 # $updateFlagFilePath example: isToUpdateTheGalileoFile.txt
-sulfixName="FlagFile.txt"
-updateFlagFilePath="$GIT_DIR_/$fileNameToUpdate$sulfixName"
+updateFlagFilePath="$GIT_DIR_/gitHookFlagFile.txt"
 
 currentGitFiles=$(git diff --name-only --cached)
 currentBranch=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD)

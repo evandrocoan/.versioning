@@ -25,7 +25,7 @@ PROJECT_ROOT_DIRECTORY=$(git rev-parse --show-toplevel)
 
 
 # Read the configurations file.
-gitHooksConfigPath=$(cat $SCRIPT_FOLDER_PATH/../githooksConfig.txt)
+gitHooksConfigPath=$(cat $SCRIPT_FOLDER_PATH/../../gitHooksConfig.txt)
 
 # $filePathToUpdate example: $PROJECT_ROOT_DIRECTORY/scripting/galileo.sma
 filePathToUpdate=$PROJECT_ROOT_DIRECTORY/$(echo $gitHooksConfigPath | cut -d',' -f 2)
@@ -38,8 +38,7 @@ targetBranch=$(echo $gitHooksConfigPath | cut -d',' -f 3 | tr -d ' ')
 fileNameToUpdate=$(echo $filePathToUpdate | sed -r "s/((.+\/)+)//")
 
 # $updateFlagFilePath example: Galileo.txtFlagFile.txt
-sulfixName="FlagFile.txt"
-updateFlagFilePath="$GIT_DIR_/$fileNameToUpdate$sulfixName"
+updateFlagFilePath="$GIT_DIR_/gitHookFlagFile.txt"
 
 # The the current active branch name.
 currentBranch=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD)
