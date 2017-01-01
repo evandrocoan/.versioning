@@ -7,7 +7,7 @@
 
 
 # This script is run straight from the project's git root folder, as the current working directory.
-# printf "Running the __post-git-hook.sh script...\n"
+printf "Running the __post-git-hook.sh script...\n"
 
 
 # Reliable way for a bash script to get the full path to itself?
@@ -75,13 +75,13 @@ then
 
         # '-C HEAD' do not prompt for a commit message, use the HEAD as commit message.
         # '--no-verify' do not call the pre-commit hook to avoid infinity loop.
-        # printf "Amending commits...\n"
+        printf "Amending commits...\n"
         git commit --amend -C HEAD --no-verify
     else
         printf "It is not time to amend, as we are not on the '$targetBranch' branch.\n"
     fi
 else
-    # printf "It is not time to amend, as the file '$updateFlagFilePath' does not exist.\n"
+    printf "It is not time to amend, as the file '$updateFlagFilePath' does not exist.\n"
     :
 fi
 
