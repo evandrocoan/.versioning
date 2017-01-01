@@ -18,7 +18,7 @@
 
 
 # This script is run straight from the project's git root folder, as the current working directory.
-# printf "Running the updateVersion.sh script...\n"
+printf "Running the updateVersion.sh script...\n"
 
 
 # Reliable way for a bash script to get the full path to itself?
@@ -40,7 +40,7 @@ then
     gitHooksConfiguration=$(cat $configurationFilePath)
 else
     printf "Creating the configuration file '$configurationFilePath'...\n"
-    cp $SCRIP_FOLDER_PATH/../$configurationFileName $SCRIP_FOLDER_PATH/../../
+    cp $SCRIP_FOLDER_PATH/$configurationFileName $SCRIP_FOLDER_PATH/../../
     exit 1
 fi
 
@@ -152,7 +152,8 @@ fi
 
 
 # To add the recent updated files to the commit
-# printf "Staging '$versionFilePath' and '$filePathToUpdate'...\n"
+printf "Staging '$versionFilePath'...\n"
+printf "Staging '$filePathToUpdate'...\n"
 git add $versionFilePath
 git add $filePathToUpdate
 
