@@ -151,6 +151,17 @@ else
 fi
 
 
+# Fix line endings
+if awk '/\r$/{exit 0;} 1{exit 1;}' $filePathToUpdate
+then
+    printf "( CRLF ) The file $filePathToUpdate is uses CRLF.\n"
+    dos2unix $filePathToUpdate
+else
+    printf "( LF ) The file $filePathToUpdate is uses LF.\n"
+    unix2dos $filePathToUpdate
+fi
+
+
 # To add the recent updated files to the commit
 printf "Staging '$versionFilePath'...\n"
 printf "Staging '$filePathToUpdate'...\n"
