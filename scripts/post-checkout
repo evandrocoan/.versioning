@@ -36,8 +36,8 @@ VERSIONING_SCRIPTS_FOLDER_PATH=$(cat $GIT_DIR_/hooks/gitHooksRoot.txt)
 updateVersionScript=$PROJECT_ROOT_DIRECTORY/$VERSIONING_SCRIPTS_FOLDER_PATH/__post-git-hook.sh
 
 
-# Read the configurations file. Example $PROJECT_ROOT_DIRECTORY/$AUTO_VERSIONING_ROOT_FOLDER_NAME/../gitHooksConfig.txt.
-gitHooksConfigPath=$(cat $PROJECT_ROOT_DIRECTORY/$AUTO_VERSIONING_ROOT_FOLDER_NAME/../../gitHooksConfig.txt)
+# Read the configurations file. Example $PROJECT_ROOT_DIRECTORY/$VERSIONING_SCRIPTS_FOLDER_PATH/../gitHooksConfig.txt.
+gitHooksConfigPath=$(cat $PROJECT_ROOT_DIRECTORY/$VERSIONING_SCRIPTS_FOLDER_PATH/../../gitHooksConfig.txt)
 
 # $targetBranch example: develop, use . to operate all branches
 targetBranch=$(echo $gitHooksConfigPath | cut -d',' -f 3 | tr -d ' ')
