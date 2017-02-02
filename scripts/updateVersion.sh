@@ -32,7 +32,7 @@ PROJECT_ROOT_DIRECTORY="$(git rev-parse --show-toplevel)"
 
 
 # Read the configurations file.
-configurationFileName="gitHooksConfig.txt"
+configurationFileName=$1
 configurationFilePath="$SCRIP_FOLDER_PATH/../../$configurationFileName"
 
 if [ -f $configurationFilePath ]
@@ -61,7 +61,7 @@ else
 fi
 
 originalVersion=$currentVersion
-component=$1
+component=$2
 
 
 # 'cut' Print selected parts of lines from each FILE to standard output
