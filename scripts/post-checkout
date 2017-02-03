@@ -32,8 +32,12 @@ PROJECT_ROOT_DIRECTORY=$(git rev-parse --show-toplevel)
 # Get the `VERSIONING_SCRIPTS_FOLDER_PATH`
 VERSIONING_SCRIPTS_FOLDER_PATH=$(cat $GIT_DIR_/hooks/gitHooksRoot.txt)
 
+scripts_folder=$(echo $VERSIONING_SCRIPTS_FOLDER_PATH | cut -d',' -f 1 | tr -d ' ')
+settings_files=$(echo $VERSIONING_SCRIPTS_FOLDER_PATH | cut -d',' -f 2 | tr -d ' ')
+
+
 # Read the configurations file.
-updateVersionScript=$PROJECT_ROOT_DIRECTORY/$VERSIONING_SCRIPTS_FOLDER_PATH/__post-git-hook.sh
+updateVersionScript="$PROJECT_ROOT_DIRECTORY/$scripts_folder/__post-git-hook.sh"
 
 
 # Read the configurations file. Example $PROJECT_ROOT_DIRECTORY/$VERSIONING_SCRIPTS_FOLDER_PATH/../gitHooksConfig.txt.
@@ -56,7 +60,7 @@ then
 fi
 
 # Run the version update script.
-if sh $updateVersionScript
+if sh $updateVersionScript $settings_files
 then
     :
     # printf "The post-checkout hook successfully ran '$updateVersionScript'.\n"

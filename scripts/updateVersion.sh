@@ -32,7 +32,7 @@ PROJECT_ROOT_DIRECTORY="$(git rev-parse --show-toplevel)"
 
 
 # Read the configurations file.
-configurationFileName=$1
+configurationFileName=$1.cfg
 configurationFilePath="$SCRIP_FOLDER_PATH/../../$configurationFileName"
 
 if [ -f $configurationFilePath ]
@@ -50,6 +50,8 @@ versionFilePath="$PROJECT_ROOT_DIRECTORY/$(echo $gitHooksConfiguration | cut -d'
 # $filePathToUpdate example: $PROJECT_ROOT_DIRECTORY/scripting/galileo.sma
 filePathToUpdate="$PROJECT_ROOT_DIRECTORY/$(echo $gitHooksConfiguration | cut -d',' -f 2 | tr -d ' ')"
 
+
+
 # Get the current version from the dedicated versioning file.
 if [ -f $versionFilePath ]
 then
@@ -62,6 +64,7 @@ fi
 
 originalVersion=$currentVersion
 component=$2
+
 
 
 # 'cut' Print selected parts of lines from each FILE to standard output

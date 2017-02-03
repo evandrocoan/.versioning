@@ -28,14 +28,18 @@
 # the current working directory is already the project's git root path or the `.git` folder itself.
 GIT_DIR_="$(git rev-parse --git-dir)"
 
-# Get the `AUTO_VERSIONING_ROOT_FOLDER_NAME`
-AUTO_VERSIONING_ROOT_FOLDER_NAME=$(cat $GIT_DIR_/hooks/gitHooksRoot.txt)
+# Get the `VERSIONING_SCRIPTS_FOLDER_PATH`
+VERSIONING_SCRIPTS_FOLDER_PATH=$(cat $GIT_DIR_/hooks/gitHooksRoot.txt)
+
+scripts_folder=$(echo $VERSIONING_SCRIPTS_FOLDER_PATH | cut -d',' -f 1 | tr -d ' ')
+settings_files=$(echo $VERSIONING_SCRIPTS_FOLDER_PATH | cut -d',' -f 2 | tr -d ' ')
+
 
 # Get the submodule (if any) or the main's repository root directory.
 PROJECT_ROOT_DIRECTORY=$(git rev-parse --show-toplevel)
 
-# Read the configurations file. Example $PROJECT_ROOT_DIRECTORY/$AUTO_VERSIONING_ROOT_FOLDER_NAME/../gitHooksConfig.txt.
-gitHooksConfigFile=$(cat $PROJECT_ROOT_DIRECTORY/$AUTO_VERSIONING_ROOT_FOLDER_NAME/../../gitHooksConfig.txt)
+# Read the configurations file. Example $PROJECT_ROOT_DIRECTORY/$scripts_folder/../galileo.cfg
+gitHooksConfigFile=$(cat $PROJECT_ROOT_DIRECTORY/$scripts_folder/../../$settings_files.cfg)
 
 # $versionFilePath example: $PROJECT_ROOT_DIRECTORY/versioning/GALILEO_SMA_VERSION.txt
 versionFilePath=$PROJECT_ROOT_DIRECTORY/$(echo $gitHooksConfigFile | cut -d',' -f 1 | tr -d ' ')

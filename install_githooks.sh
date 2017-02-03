@@ -48,25 +48,36 @@ then
     # Set the scripts file prefix
     scripts_folder_prefix="scripts"
 
-    # Write specify the githooks' root folder
-    echo "$AUTO_VERSIONING_ROOT_FOLDER_PATH/$scripts_folder_prefix" > $gitHooksPath/gitHooksRoot.txt
+    configuration_file=$1
+    configuration_file_path=$SCRIPT_FOLDER_PATH/../$configuration_file.cfg
 
-    # Declare an array variable
-    # You can access them using echo "${arr[0]}", "${arr[1]}"
-    declare -a git_hooks_file_list=( "post-checkout" "post-commit" "prepare-commit-msg" )
+    if [ -f $configuration_file_path ]
+    then
+        # Write specify the githooks' root folder
+        echo "$AUTO_VERSIONING_ROOT_FOLDER_PATH/$scripts_folder_prefix,$configuration_file," > $gitHooksPath/gitHooksRoot.txt
 
-    # Now loop through the above array
-    for current_file in "${git_hooks_file_list[@]}"
-    do
-        if ! cp -v "$SCRIPT_FOLDER_PATH/$scripts_folder_prefix/$current_file" $gitHooksPath
-        then
-            printf "\nERROR when installing \`$current_file\` file from:\n"
-            printf "\`$SCRIPT_FOLDER_PATH/$scripts_folder_prefix\` to \`$gitHooksPath\`.\n"
-            exit 1
-        fi
-    done
+        # Declare an array variable
+        # You can access them using echo "${arr[0]}", "${arr[1]}"
+        declare -a git_hooks_file_list=( "post-checkout" "post-commit" "prepare-commit-msg" )
 
-    printf "\nThe githooks are successfully installed!\n"
+        # Now loop through the above array
+        for current_file in "${git_hooks_file_list[@]}"
+        do
+            if ! cp -v "$SCRIPT_FOLDER_PATH/$scripts_folder_prefix/$current_file" $gitHooksPath
+            then
+                printf "\nERROR when installing \`$current_file\` file from:\n"
+                printf "\`$SCRIPT_FOLDER_PATH/$scripts_folder_prefix\` to \`$gitHooksPath\`.\n"
+                exit 1
+            fi
+        done
+
+        printf "\nThe githooks are successfully installed!\n"
+    else
+        printf "Error! Could not to install the githooks.\n"
+        printf "The file \`$configuration_file_path\` is missing.\n\n"
+        printf "This script command line first parameter must to be from valid setup files.\n"
+        exit 1
+    fi
 else
     printf "Error! Could not to install the githooks.\n"
     printf "The folder \`$gitHooksPath\` folder is missing.\n\n"
