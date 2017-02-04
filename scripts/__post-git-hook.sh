@@ -27,13 +27,13 @@ PROJECT_ROOT_DIRECTORY=$(git rev-parse --show-toplevel)
 settings_files=$1
 
 # Read the configurations file.
-gitHooksConfigPath="$(cat $SCRIPT_FOLDER_PATH/../../$settings_files.cfg)"
+gitHooksConfigFile="$(cat $SCRIPT_FOLDER_PATH/../../$settings_files.cfg)"
 
 # $filePathToUpdate example: $PROJECT_ROOT_DIRECTORY/scripting/galileo.sma
-filePathToUpdate="$(echo $gitHooksConfigPath | cut -d',' -f 2)"
+filePathToUpdate="$(echo $gitHooksConfigFile | cut -d',' -f 2)"
 
 # $targetBranch example: develop, use . to operate all branches
-targetBranch=$(echo $gitHooksConfigPath | cut -d',' -f 3 | tr -d ' ')
+targetBranch=$(echo $gitHooksConfigFile | cut -d',' -f 3 | tr -d ' ')
 
 
 # Remove the '/app/blabla/' from the $filePathToUpdate argument name. Example: galileo.sma
