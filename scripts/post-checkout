@@ -37,7 +37,7 @@ settings_files=$(echo $VERSIONING_SCRIPTS_FOLDER_PATH | cut -d',' -f 2 | tr -d '
 
 
 # Read the configurations file.
-updateVersionScript="$PROJECT_ROOT_DIRECTORY/$scripts_folder/__post-git-hook.sh"
+version_script_hook="$PROJECT_ROOT_DIRECTORY/$scripts_folder/__post-git-hook.sh"
 
 
 # Read the configurations file. Example $PROJECT_ROOT_DIRECTORY/$scripts_folder/../../galileo.cfg
@@ -60,12 +60,12 @@ then
 fi
 
 # Run the version update script.
-if sh $updateVersionScript $settings_files
+if sh $version_script_hook $settings_files
 then
     :
-    # printf "The post-checkout hook successfully ran '$updateVersionScript'.\n"
+    # printf "The post-checkout hook successfully ran '$version_script_hook'.\n"
 else
-    printf "Could not run the update program '$updateVersionScript' properly!\n"
+    printf "Could not run the update program '$version_script_hook' properly!\n"
     exit 1
 fi
 

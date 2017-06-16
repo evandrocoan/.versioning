@@ -10,15 +10,15 @@
 # "$AUTO_VERSIONING_ROOT_FOLDER_NAME/VERSION.txt" and "./project_folder/project_file.txt" using
 # the same version number.
 #
-# Program usage: updateVersion [major | minor | patch | build]
-# Example: ./updateVersion build
+# Program usage: update_version [major | minor | patch | build]
+# Example: ./update_version build
 #
 #
 
 
 
 # This script is run straight from the project's git root folder, as the current working directory.
-# printf "Running the updateVersion.sh script...\n"
+# printf "Running the update_version.sh script...\n"
 
 
 # Reliable way for a bash script to get the full path to itself?
@@ -107,7 +107,7 @@ case "$component" in
 
     * )
         printf "Error - argument must be 'major', 'minor', 'patch' or 'build'\n"
-        printf "Usage: updateVersion [major | minor | patch | build]\n"
+        printf "Usage: update_version [major | minor | patch | build]\n"
         printf "\n"
         printf "Semantic Versioning 2.0.0\n"
         printf "\n"

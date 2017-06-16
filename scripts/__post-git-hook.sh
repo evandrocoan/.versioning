@@ -27,7 +27,7 @@ PROJECT_ROOT_DIRECTORY=$(git rev-parse --show-toplevel)
 settings_files=$1
 
 # Read the configurations file.
-gitHooksConfigFile="$(cat $SCRIPT_FOLDER_PATH/../../$settings_files)"
+gitHooksConfigFile="$(cat $PROJECT_ROOT_DIRECTORY/$settings_files)"
 
 # $filePathToUpdate example: $PROJECT_ROOT_DIRECTORY/scripting/galileo.sma
 filePathToUpdate="$(echo $gitHooksConfigFile | cut -d',' -f 2)"
@@ -46,8 +46,8 @@ updateFlagFilePath="$GIT_DIR_/gitHookFlagFile.txt"
 # The the current active branch name.
 currentBranch=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD)
 
-# Creates the path to the `updateVersion.sh` script.
-updateVersionProgram="$SCRIPT_FOLDER_PATH/updateVersion.sh"
+# Creates the path to the `update_version.sh` script.
+update_version_script="$SCRIPT_FOLDER_PATH/../update_version.sh"
 
 
 cleanUpdateFlagFile()
@@ -66,12 +66,12 @@ if [ -f $updateFlagFilePath ]
 then
     if [[ $currentBranch == $targetBranch || $targetBranch == "." ]]
     then
-        if sh $updateVersionProgram $settings_files build
+        if sh $update_version_script $settings_files build
         then
             :
-            # printf "Successfully ran '$updateVersionProgram'.\n"
+            # printf "Successfully ran '$update_version_script'.\n"
         else
-            # printf "Could not run the update program '$updateVersionProgram' properly!\n"
+            # printf "Could not run the update program '$update_version_script' properly!\n"
             cleanUpdateFlagFile
             exit 1
         fi

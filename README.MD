@@ -4,7 +4,7 @@
 Automatically updates the version number for your project files.
 
 Open the file "gitHooksConfig.txt" to configure the files to be used and updated when the program
-"./updateVersion.sh" to run. To install it as an automated git versioning on every commit, run
+"./update_version.sh" to run. To install it as an automated git versioning on every commit, run
 the installer `install_githooks.sh`.
 
 
@@ -30,16 +30,16 @@ For automated versioning when doing git commits/committing:
 
 1. Run the `git hooks` installer script `install_githooks.sh`. And re-run the installer
 `install_githooks.sh` every time you rename the folder where this repository is cloned into.
-1. Run the script `updateVersion.sh` and read the instructions.
+1. Run the script `update_version.sh` and read the instructions.
 
 Program usage:
 ```
-./updateVersion.sh [major | minor | patch | build]
+./update_version.sh [major | minor | patch | build]
 ```
 Example:
 
-1. `./updateVersion` to show help.
-1. `./updateVersion build` to increment the build number.
+1. `./update_version` to show help.
+1. `./update_version build` to increment the build number.
 
 
 
@@ -68,6 +68,10 @@ http://semver.org/
 
 ## Change log
 ```
+2017-06-16 _ v3.0.2
+Moved the `updateVersion.sh` from ./scripts to `./update_version.sh`
+Fixed the `githooksConfig.txt` name to `gitHooksConfigTemplate.txt`
+
 2017-06-16 _ v3.0.1
 Fixed the `install-githooks.sh` script install instructions.
 
@@ -96,5 +100,17 @@ Placed this file within the repository sub-folder "./$AUTO_VERSIONING_ROOT_FOLDE
 2016-11-14 _ v1.0.0
  Downloaded from: https://github.com/cloudfoundry/cli/blob/master/bin/bump-version
 ```
+
+
+___
+## Licence
+
+All files in this repository are released under GNU General Public License v3.0, unless stated otherwise.
+See:
+
+1. The [LICENSE](LICENSE.TXT) file.
+1. And the website [https://www.gnu.org/licenses/gpl-3.0.en.html](https://www.gnu.org/licenses/gpl-3.0.en.html).
+
+For more information.
 
 
