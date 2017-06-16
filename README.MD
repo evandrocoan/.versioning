@@ -68,32 +68,32 @@ http://semver.org/
 
 ## Change log
 ```
-v3.0.1 - 2017:06:16
-Fixed the `install:githooks.sh` script install instructions.
+2017-06-16 _ v3.0.1
+Fixed the `install-githooks.sh` script install instructions.
 
-v3.0.0 - 2017:02:03
+2017-02-03 _ v3.0.0
 Partially allowed multiple configurations files to be installed.
 
-v2.1.0 - 01:01:2017
+2016-01-01 _ v2.1.0
 Allowed free folder renaming for the auto-versioning root folder.
 
-v2.0.0
+2016-11-14 _ v2.0.0
 Added installer script `install_githooks.sh`.
 Removed redundant configurations from `gitHooksConfig.txt`.
 Added a new setting to choose which branch is the target branch for auto versioning.
 
-v1.1.2
+2016-11-14 _ v1.1.2
 Added error message when the 'sed' operation fails.
 
-v1.1.1
+2016-11-14 _ v1.1.1
 Placed this file within the repository sub-folder "./$AUTO_VERSIONING_ROOT_FOLDER_NAME".
 
-v1.1
+2016-11-14 _ v1.1.0
  Implemented build incrementing number.
  Created variables to hold the used files names.
  Added file search and replace to update the version numbers.
 
-v1.0 - 2016:11:14
+2016-11-14 _ v1.0.0
  Downloaded from: https://github.com/cloudfoundry/cli/blob/master/bin/bump-version
 ```
 
