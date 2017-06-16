@@ -27,7 +27,7 @@ PROJECT_ROOT_DIRECTORY=$(git rev-parse --show-toplevel)
 settings_files=$1
 
 # Read the configurations file.
-gitHooksConfigFile="$(cat $SCRIPT_FOLDER_PATH/../../$settings_files.cfg)"
+gitHooksConfigFile="$(cat $SCRIPT_FOLDER_PATH/../../$settings_files)"
 
 # $filePathToUpdate example: $PROJECT_ROOT_DIRECTORY/scripting/galileo.sma
 filePathToUpdate="$(echo $gitHooksConfigFile | cut -d',' -f 2)"

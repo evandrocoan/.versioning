@@ -14,6 +14,9 @@ cd ..
 GIT_DIR_="$(git rev-parse --git-dir)"
 gitHooksPath="$GIT_DIR_/hooks"
 
+REPOSITORY_ROOT_FOLDER_PATH=$GIT_DIR_/../
+VERSIONING_TEMPLATE_FILE_NAME=githooksConfig.txt
+
 
 # Remove the '/app/blabla/' from the $SCRIPT_FOLDER_PATH variable to get its base folder name.
 # https://regex101.com/r/rR0oM2/1
@@ -49,9 +52,32 @@ then
     scripts_folder_prefix="scripts"
 
     configuration_file=$1
-    configuration_file_path=$SCRIPT_FOLDER_PATH/../$configuration_file.cfg
 
-    if [ -f $configuration_file_path ]
+    # How to find whether or not a variable is empty in Bash script
+    # https://stackoverflow.com/questions/3061036/how-to-find-whether-or-not-a-variable-is-empty-in-bash-script
+    if [[ -z "$configuration_file" ]]
+    then
+        printf "ERROR! This script first command line parameter must to be from valid setup files.\n"
+        printf "Usage:\n"
+        printf "./install_githooks.sh configuration_file_name.cfg\n"
+        printf "\n"
+        exit 1
+    fi
+
+    configuration_file_path=$REPOSITORY_ROOT_FOLDER_PATH/$configuration_file
+    configuration_file_template_path=$SCRIPT_FOLDER_PATH/$scripts_folder_prefix/$VERSIONING_TEMPLATE_FILE_NAME
+
+    if ! [ -f "$configuration_file_path" ]
+    then
+        if ! cp -v "$configuration_file_template_path" "$configuration_file_path"
+        then
+            printf "\nERROR when installing \`$VERSIONING_TEMPLATE_FILE_NAME\` file from:\n"
+            printf "\`$configuration_file_template_path\` to \`$configuration_file_path\`.\n"
+            exit 1
+        fi
+    fi
+
+    if [ -f "$configuration_file_path" ]
     then
         # Write specify the githooks' root folder
         echo "$AUTO_VERSIONING_ROOT_FOLDER_PATH/$scripts_folder_prefix,$configuration_file," > $gitHooksPath/gitHooksRoot.txt
@@ -75,7 +101,6 @@ then
     else
         printf "Error! Could not to install the githooks.\n"
         printf "The file \`$configuration_file_path\` is missing.\n\n"
-        printf "This script command line first parameter must to be from valid setup files.\n"
         exit 1
     fi
 else

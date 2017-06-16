@@ -41,7 +41,7 @@ updateVersionScript="$PROJECT_ROOT_DIRECTORY/$scripts_folder/__post-git-hook.sh"
 
 
 # Read the configurations file. Example $PROJECT_ROOT_DIRECTORY/$scripts_folder/../../galileo.cfg
-gitHooksConfigFile=$(cat $PROJECT_ROOT_DIRECTORY/$scripts_folder/../../$settings_files.cfg)
+gitHooksConfigFile=$(cat $PROJECT_ROOT_DIRECTORY/$scripts_folder/../../$settings_files)
 
 # $targetBranch example: develop, use . to operate all branches
 targetBranch=$(echo $gitHooksConfigFile | cut -d',' -f 3 | tr -d ' ')

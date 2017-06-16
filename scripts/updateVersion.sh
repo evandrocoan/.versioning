@@ -32,7 +32,7 @@ PROJECT_ROOT_DIRECTORY="$(git rev-parse --show-toplevel)"
 
 
 # Read the configurations file.
-configurationFileName=$1.cfg
+configurationFileName=$1
 configurationFilePath="$SCRIP_FOLDER_PATH/../../$configurationFileName"
 
 if [ -f $configurationFilePath ]

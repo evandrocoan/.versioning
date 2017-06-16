@@ -32,7 +32,7 @@ For automated versioning when doing git commits/committing:
 `install_githooks.sh` every time you rename the folder where this repository is cloned into.
 1. Run the script `updateVersion.sh` and read the instructions.
 
-Program usage: 
+Program usage:
 ```
 ./updateVersion.sh [major | minor | patch | build]
 ```
@@ -68,10 +68,13 @@ http://semver.org/
 
 ## Change log
 ```
-v3.0.0
+v3.0.1 - 2017:06:16
+Fixed the `install:githooks.sh` script install instructions.
+
+v3.0.0 - 2017:02:03
 Partially allowed multiple configurations files to be installed.
 
-v2.1.0
+v2.1.0 - 01:01:2017
 Allowed free folder renaming for the auto-versioning root folder.
 
 v2.0.0
@@ -90,7 +93,7 @@ v1.1
  Created variables to hold the used files names.
  Added file search and replace to update the version numbers.
 
-v1.0
+v1.0 - 2016:11:14
  Downloaded from: https://github.com/cloudfoundry/cli/blob/master/bin/bump-version
 ```
 
