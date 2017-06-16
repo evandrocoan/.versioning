@@ -15,7 +15,7 @@ GIT_DIR_="$(git rev-parse --git-dir)"
 gitHooksPath="$GIT_DIR_/hooks"
 
 REPOSITORY_ROOT_FOLDER_PATH=$GIT_DIR_/../
-VERSIONING_TEMPLATE_FILE_NAME=githooksConfig.txt
+VERSIONING_TEMPLATE_FILE_NAME=gitHooksConfigTemplate.txt
 
 
 # Remove the '/app/blabla/' from the $SCRIPT_FOLDER_PATH variable to get its base folder name.
