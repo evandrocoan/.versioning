@@ -54,6 +54,9 @@ versionFilePath="$PROJECT_ROOT_DIRECTORY/$(echo $gitHooksConfiguration | cut -d'
 # $filePathToUpdate example: $PROJECT_ROOT_DIRECTORY/scripting/galileo.sma
 filePathToUpdate="$PROJECT_ROOT_DIRECTORY/$(echo $gitHooksConfiguration | cut -d',' -f 2 | tr -d ' ')"
 
+# Load the bit wise options to customize the program behavior.
+bitWiseOptions=$(echo $gitHooksConfiguration | cut -d',' -f 5 | tr -d ' ')
+
 
 
 # Get the current version from the dedicated versioning file.
@@ -159,15 +162,17 @@ fi
 
 
 # Fix line endings
-if awk '/\r$/{exit 0;} 1{exit 1;}' $filePathToUpdate
+if (( ($bitWiseOptions & 1) != 0 ))
 then
-    # printf "( CRLF ) The file $filePathToUpdate is uses CRLF.\n"
-    dos2unix $filePathToUpdate
-else
-    # printf "( LF ) The file $filePathToUpdate is uses LF.\n"
-    unix2dos $filePathToUpdate
+    if awk '/\r$/{exit 0;} 1{exit 1;}' $filePathToUpdate
+    then
+        # printf "( CRLF ) The file $filePathToUpdate is uses CRLF.\n"
+        dos2unix $filePathToUpdate
+    else
+        # printf "( LF ) The file $filePathToUpdate is uses LF.\n"
+        unix2dos $filePathToUpdate
+    fi
 fi
-
 
 # To add the recent updated files to the commit
 # printf "Staging '$versionFilePath'...\n"

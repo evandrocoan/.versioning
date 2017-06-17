@@ -68,7 +68,8 @@ http://semver.org/
 
 ## Change log
 ```
-2017-06-16 _ v3.0.2
+2017-06-16 _ v3.1.0
+Added a new setting option 5, to allow general settings configurations.
 Moved the `updateVersion.sh` from ./scripts to `./update_version.sh`
 Fixed the `githooksConfig.txt` name to `gitHooksConfigTemplate.txt`
 
