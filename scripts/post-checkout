@@ -39,12 +39,12 @@ settings_files=$(echo $VERSIONING_SCRIPTS_FOLDER_PATH | cut -d',' -f 2 | tr -d '
 # Read the configurations file.
 version_script_hook="$PROJECT_ROOT_DIRECTORY/$scripts_folder/__post-git-hook.sh"
 
-
 # Read the configurations file. Example $PROJECT_ROOT_DIRECTORY/$scripts_folder/../../galileo.cfg
 gitHooksConfigFile=$(cat $PROJECT_ROOT_DIRECTORY/$scripts_folder/../../$settings_files)
 
 # $targetBranch example: develop, use . to operate all branches
 targetBranch=$(echo $gitHooksConfigFile | cut -d',' -f 3 | tr -d ' ')
+
 
 
 if [[ $targetBranch != "." ]]

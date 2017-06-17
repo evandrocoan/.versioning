@@ -68,8 +68,8 @@ then
     then
         if sh $update_version_script $settings_files build
         then
-            :
             # printf "Successfully ran '$update_version_script'.\n"
+            :
         else
             # printf "Could not run the update program '$update_version_script' properly!\n"
             cleanUpdateFlagFile
@@ -84,8 +84,8 @@ then
         printf "It is not time to amend, as we are not on the '$targetBranch' branch.\n"
     fi
 else
-    :
     # printf "It is not time to amend, as the file '$updateFlagFilePath' does not exist.\n"
+    :
 fi
 
 

@@ -24,27 +24,31 @@
 # Reliable way for a bash script to get the full path to itself?
 # http://stackoverflow.com/questions/4774054/reliable-way-for-a-bash-script-to-get-the-full-path-to-itself
 pushd `dirname $0` > /dev/null
-SCRIP_FOLDER_PATH=`pwd`
+SCRIPT_FOLDER_PATH=`pwd`
 popd > /dev/null
+
+# Whether we are dealing with a git-submodule or not, this get the correct git file path for the
+# project root folder if run on it directory, or for the sub-module folder if run on its directory.
+cd $SCRIPT_FOLDER_PATH
+cd ..
+
+GIT_DIR_="$(git rev-parse --git-dir)"
+configuration_file=$1
+
+# Check whether the configuration file provided is valid
+if ! $SCRIPT_FOLDER_PATH/scripts/utilities.sh $configuration_file
+then
+    exit 1
+fi
 
 # Get the submodule (if any) or the main's repository root directory
 PROJECT_ROOT_DIRECTORY="$(git rev-parse --show-toplevel)"
 
-
 # Read the configurations file.
-configurationFileName=$1
-configurationFilePath="$SCRIP_FOLDER_PATH/../../$configurationFileName"
+configurationFilePath="$PROJECT_ROOT_DIRECTORY/$configuration_file"
+gitHooksConfiguration=$(cat $configurationFilePath)
 
-if [ -f $configurationFilePath ]
-then
-    gitHooksConfiguration=$(cat $configurationFilePath)
-else
-    printf "Creating the configuration file '$configurationFilePath'...\n"
-    cp "$SCRIP_FOLDER_PATH/$configurationFileName" "$SCRIP_FOLDER_PATH/../../"
-    exit 1
-fi
-
-# $versionFilePath example: $SCRIP_FOLDER_PATH/GALILEO_SMA_VERSION.txt
+# $versionFilePath example: $PROJECT_ROOT_DIRECTORY/GALILEO_SMA_VERSION.txt
 versionFilePath="$PROJECT_ROOT_DIRECTORY/$(echo $gitHooksConfiguration | cut -d',' -f 1 | tr -d ' ')"
 
 # $filePathToUpdate example: $PROJECT_ROOT_DIRECTORY/scripting/galileo.sma

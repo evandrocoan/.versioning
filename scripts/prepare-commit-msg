@@ -68,6 +68,7 @@ currentBranch=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD)
 currentVersion=$(cat $versionFilePath)
 
 
+
 # When the file "$updateFlagFilePath" exits, we must not to recreate it, as we just did
 # that. This happens because the file "$updateFlagFilePath" is created to indicate that
 # the version number is already updated and doing it again would create an infinite loop.
