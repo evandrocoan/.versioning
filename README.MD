@@ -1,5 +1,5 @@
 
-# Automated Versioning Script
+# Automated Versioning Scripts
 
 Automatically updates the version number for your project files.
 
