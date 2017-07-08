@@ -104,7 +104,7 @@ Placed this file within the repository sub-folder "./$AUTO_VERSIONING_ROOT_FOLDE
 
 
 ___
-## Licence
+## License
 
 All files in this repository are released under GNU General Public License v3.0, unless stated otherwise.
 See:
