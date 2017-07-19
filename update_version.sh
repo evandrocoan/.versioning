@@ -35,7 +35,7 @@ cd ..
 GIT_DIR_="$(git rev-parse --git-dir)"
 configuration_file=$1
 
-# Check whether the configuration file provided is valid
+# Initialize the configuration file provided
 if ! $SCRIPT_FOLDER_PATH/scripts/utilities.sh $configuration_file
 then
     exit 1
