@@ -3,7 +3,7 @@
 
 Automatically updates the version number for your project files.
 
-Open the file "gitHooksConfig.txt" to configure the files to be used and updated when the program
+Open the file [scripts/gitHooksConfigTemplate.txt](scripts/gitHooksConfigTemplate.txt) to configure the files to be used and updated when the program
 "./update_version.sh" to run. To install it as an automated git versioning on every commit, run
 the installer `install_githooks.sh`.
 
